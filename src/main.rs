@@ -9,7 +9,7 @@ use keepass::{
 #[derive(Parser)]
 #[clap(name = "keep-in-touch")]
 #[clap(version = env!("CARGO_PKG_VERSION"))]
-#[clap(about = "Contact manager based on the KDBX4 encrypted database format", long_about = None)]
+#[clap(about = "CLI tool to merge KDBX (keepass) databases", long_about = None)]
 struct KeepassMerge {
     /// The path of the database file to merge to.
     destination_db: String,
@@ -24,6 +24,10 @@ struct KeepassMerge {
     /// Use the same credentials for both databases.
     #[clap(long, short)]
     same_credentials: bool,
+
+    /// Do not save the resulting database.
+    #[clap(long, short)]
+    dry_run: bool,
 }
 
 fn main() -> Result<std::process::ExitCode> {

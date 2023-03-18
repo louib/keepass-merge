@@ -4,8 +4,25 @@
 
 CLI tool to merge KDBX (keepass) databases
 
+`keepass-merge` is based on the [`keepass-rs` library](https://github.com/sseemayer/keepass-rs).
+
 ## Usage
-TODO
+```
+CLI tool to merge KDBX (keepass) databases
+
+Usage: keepass-merge [OPTIONS] <DESTINATION_DB> <SOURCE_DB>
+
+Arguments:
+  <DESTINATION_DB>  The path of the database file to merge to
+  <SOURCE_DB>       The path of the database file to merge from
+
+Options:
+  -n, --no-prompt         Disables the password prompt on stdout
+  -s, --same-credentials  Use the same credentials for both databases
+  -d, --dry-run           Do not save the resulting database
+  -h, --help              Print help
+  -V, --version           Print version
+```
 
 ## Installing
 ### With Nix
