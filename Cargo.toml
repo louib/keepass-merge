@@ -1,0 +1,15 @@
+[package]
+name = "keepass-merge"
+authors = ["louib <code@louib.net>"]
+
+version = "0.1.0"
+edition = "2021"
+
+repository = "https://github.com/louib/keepass-merge/"
+description = "CLI tool to merge KDBX (keepass) databases"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+clap = { version = "4", features = ["derive"] }
+keepass = { git = "https://github.com/sseemayer/keepass-rs", features = ["save_kdbx4"] }
