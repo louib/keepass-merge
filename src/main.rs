@@ -13,11 +13,17 @@ use keepass::{
 struct KeepassMerge {
     /// The path of the database file to merge to.
     destination_db: String,
+
     /// The path of the database file to merge from.
     source_db: String,
+
     /// Disables the password prompt on stdout.
     #[clap(long, short)]
     no_prompt: bool,
+
+    /// Use the same credentials for both databases.
+    #[clap(long, short)]
+    same_credentials: bool,
 }
 
 fn main() -> Result<std::process::ExitCode> {
@@ -26,18 +32,43 @@ fn main() -> Result<std::process::ExitCode> {
     let destination_db_path = args.destination_db;
     let source_db_path = args.source_db;
 
-    let mut database_file = std::fs::File::open(&destination_db_path)?;
+    let mut destination_db_file = std::fs::File::open(&destination_db_path)?;
+    let mut source_db_file = std::fs::File::open(&source_db_path)?;
 
-    let password = rpassword::prompt_password("Password (or blank for none): ")
-        .expect("Could not read password from TTY");
+    let destination_db_password =
+        rpassword::prompt_password("Password for the destination database (or blank for none): ")
+            .expect("Could not read password from TTY");
 
     // TODO support keyfile
     // TODO support yubikey
     //
-    let mut db = Database::open(&mut database_file, DatabaseKey::with_password(&password))?;
-    println!("Enter '?' to print the list of available commands.");
+    let mut destination_db = Database::open(
+        &mut destination_db_file,
+        DatabaseKey::with_password(&destination_db_password),
+    )?;
 
-    println!("Hello, world!");
+    let source_db = match args.same_credentials {
+        true => Database::open(
+            &mut source_db_file,
+            DatabaseKey::with_password(&destination_db_password),
+        ),
+        false => {
+            // TODO support keyfile
+            // TODO support yubikey
+            //
+            let source_db_password = rpassword::prompt_password(
+                "Password for the source database (or blank for none): ",
+            )
+            .expect("Could not read password from TTY");
+
+            Database::open(
+                &mut source_db_file,
+                DatabaseKey::with_password(&source_db_password),
+            )
+        }
+    }?;
+
+    // destination_db.root.merge(source_db.root);
 
     Ok(std::process::ExitCode::SUCCESS)
 }
