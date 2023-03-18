@@ -1,9 +1,8 @@
+use std::fs::File;
+
 use anyhow::Result;
 use clap::{arg, Command, Parser};
-use keepass::{
-    db::{Entry, Node, Value},
-    Database, DatabaseKey,
-};
+use keepass::{Database, DatabaseKey};
 
 /// Contact manager based on the KDBX4 encrypted database format
 #[derive(Parser)]
@@ -36,8 +35,8 @@ fn main() -> Result<std::process::ExitCode> {
     let destination_db_path = args.destination_db;
     let source_db_path = args.source_db;
 
-    let mut destination_db_file = std::fs::File::open(&destination_db_path)?;
-    let mut source_db_file = std::fs::File::open(&source_db_path)?;
+    let mut destination_db_file = File::open(&destination_db_path)?;
+    let mut source_db_file = File::open(&source_db_path)?;
 
     let destination_db_password =
         rpassword::prompt_password("Password for the destination database (or blank for none): ")
@@ -72,7 +71,18 @@ fn main() -> Result<std::process::ExitCode> {
         }
     }?;
 
-    // destination_db.root.merge(source_db.root);
+    if args.dry_run {
+        panic!("dry-run option is not implemented yet.")
+    }
+
+    destination_db.root.merge(&source_db.root);
+
+    let mut destination_db_file = File::options().write(true).open(&destination_db_path)?;
+    destination_db.save(
+        &mut destination_db_file,
+        DatabaseKey::with_password(&destination_db_password),
+    )?;
+    print!("Databases were merged successfully.");
 
     Ok(std::process::ExitCode::SUCCESS)
 }
