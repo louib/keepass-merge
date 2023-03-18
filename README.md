@@ -1,4 +1,5 @@
 # keepass-merge
+[![Build Status](https://github.com/louib/keepass-merge/actions/workflows/merge.yml/badge.svg?branch=main)](https://github.com/louib/keepass-merge/actions/workflows/merge.yml)
 [![dependency status](https://deps.rs/repo/github/louib/keepass-merge/status.svg)](https://deps.rs/repo/github/louib/keepass-merge)
 [![License file](https://img.shields.io/github/license/louib/keepass-merge)](https://github.com/louib/keepass-merge/blob/main/LICENSE)
 
