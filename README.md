@@ -1,6 +1,6 @@
 # keepass-merge
 [![dependency status](https://deps.rs/repo/github/louib/keepass-merge/status.svg)](https://deps.rs/repo/github/louib/keepass-merge)
-[![License file](https://img.shields.io/github/license/louib/keepass-merge)](https://github.com/louib/keepass-merge/blob/master/LICENSE)
+[![License file](https://img.shields.io/github/license/louib/keepass-merge)](https://github.com/louib/keepass-merge/blob/main/LICENSE)
 
 CLI tool to merge KDBX (keepass) databases
 
