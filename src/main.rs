@@ -1,3 +1,4 @@
+use anyhow::Result;
 use clap::{arg, Command, Parser};
 use keepass::{
     db::{Entry, Node, Value},
@@ -19,10 +20,24 @@ struct KeepassMerge {
     no_prompt: bool,
 }
 
-fn main() {
+fn main() -> Result<std::process::ExitCode> {
     let args = KeepassMerge::parse();
 
-    let database_path = args.path;
+    let destination_db_path = args.destination_db;
+    let source_db_path = args.source_db;
+
+    let mut database_file = std::fs::File::open(&destination_db_path)?;
+
+    let password = rpassword::prompt_password("Password (or blank for none): ")
+        .expect("Could not read password from TTY");
+
+    // TODO support keyfile
+    // TODO support yubikey
+    //
+    let mut db = Database::open(&mut database_file, DatabaseKey::with_password(&password))?;
+    println!("Enter '?' to print the list of available commands.");
 
     println!("Hello, world!");
+
+    Ok(std::process::ExitCode::SUCCESS)
 }
