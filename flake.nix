@@ -50,7 +50,7 @@
                 outputHashes = {
                   # This hash need to be updated everytime you bump the version of the keepass-rs
                   # library.
-                  "keepass-0.6.0-rc.1" = "sha256-06fxkIv8RoJ39gO8v16VNydAkB28WcKCpRnU+y1lZn0=";
+                  "keepass-0.6.1" = "sha256-Dk0l1r4nmXrOvvM2r+LDGjw6IKihbXFI+4+Sswi76nQ=";
                 };
               };
 

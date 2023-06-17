@@ -27,6 +27,7 @@ Options:
   -n, --no-prompt         Disables the password prompt on stdout
   -s, --same-credentials  Use the same credentials for both databases
   -d, --dry-run           Do not save the resulting database
+  -f, --force             Force saving the database even if warnings were generated
   -h, --help              Print help
   -V, --version           Print version
 ```

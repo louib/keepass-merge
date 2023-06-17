@@ -12,6 +12,10 @@ description = "CLI tool to merge KDBX (keepass) databases"
 
 [dependencies]
 clap = { version = "4", features = ["derive"] }
-keepass = { git = "https://github.com/sseemayer/keepass-rs", features = ["save_kdbx4"], branch = "add_merge_feature"}
 rpassword = { version = "7" }
 anyhow = { version = "1" }
+
+[dependencies.keepass]
+git = "https://github.com/sseemayer/keepass-rs"
+features = ["save_kdbx4"]
+branch = "add_merge_feature"
