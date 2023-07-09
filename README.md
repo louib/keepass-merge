@@ -33,6 +33,7 @@ Options:
 ```
 
 ## Installing
+
 ### With Nix
 Assuming that you have enabled both the `flakes` and `nix-command` experimental features:
 ```
