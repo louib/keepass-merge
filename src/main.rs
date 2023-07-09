@@ -1,7 +1,7 @@
 use std::fs::File;
 
 use anyhow::Result;
-use clap::{arg, Command, Parser};
+use clap::Parser;
 use keepass::{Database, DatabaseKey};
 
 /// Contact manager based on the KDBX4 encrypted database format
@@ -42,9 +42,15 @@ fn main() -> Result<std::process::ExitCode> {
     let mut destination_db_file = File::open(&destination_db_path)?;
     let mut source_db_file = File::open(&source_db_path)?;
 
+    let mut password_prompt = "Password for the destination database (or blank for none): ";
+    // Use a slightly more meaningful prompt if the password is that same
+    // for both databases.
+    if args.same_credentials {
+        password_prompt = "Password for the databases (or blank for none): ";
+    }
+
     let destination_db_password =
-        rpassword::prompt_password("Password for the destination database (or blank for none): ")
-            .expect("Could not read password from TTY");
+        rpassword::prompt_password(password_prompt).expect("Could not read password from TTY");
 
     // TODO support keyfile
     // TODO support yubikey
