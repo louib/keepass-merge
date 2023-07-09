@@ -17,5 +17,6 @@ anyhow = { version = "1" }
 
 [dependencies.keepass]
 git = "https://github.com/sseemayer/keepass-rs"
-features = ["save_kdbx4"]
 branch = "add_merge_feature"
+# path = "../keepass-rs"
+features = ["save_kdbx4"]
