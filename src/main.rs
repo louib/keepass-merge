@@ -75,10 +75,6 @@ fn main() -> Result<std::process::ExitCode> {
         }
     }?;
 
-    if args.dry_run {
-        panic!("dry-run option is not implemented yet.")
-    }
-
     let merge_result = match destination_db.root.merge(&source_db.root) {
         Ok(r) => r,
         Err(e) => {
