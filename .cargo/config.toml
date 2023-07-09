@@ -1,0 +1,7 @@
+[build]
+rustflags = "-C target-cpu=native"
+
+[profile.dev]
+# Enable all optimizations even in debug mode, otherwise AES key derivation
+# is too slow
+opt-level = 3
