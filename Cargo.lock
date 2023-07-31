@@ -475,7 +475,7 @@ dependencies = [
 [[package]]
 name = "keepass"
 version = "0.6.1"
-source = "git+https://github.com/sseemayer/keepass-rs?branch=add_merge_feature#d658cf8267b10773321ff6e82e89a25fe72c88cd"
+source = "git+https://github.com/sseemayer/keepass-rs?branch=add_merge_feature#39f64a2530211bdc55bcedef7b1a3d70414fdd87"
 dependencies = [
  "aes",
  "base64 0.21.2",

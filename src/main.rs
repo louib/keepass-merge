@@ -57,13 +57,13 @@ fn main() -> Result<std::process::ExitCode> {
     //
     let mut destination_db = Database::open(
         &mut destination_db_file,
-        DatabaseKey::with_password(&destination_db_password),
+        DatabaseKey::new().with_password(&destination_db_password),
     )?;
 
     let source_db = match args.same_credentials {
         true => Database::open(
             &mut source_db_file,
-            DatabaseKey::with_password(&destination_db_password),
+            DatabaseKey::new().with_password(&destination_db_password),
         ),
         false => {
             // TODO support keyfile
@@ -76,7 +76,7 @@ fn main() -> Result<std::process::ExitCode> {
 
             Database::open(
                 &mut source_db_file,
-                DatabaseKey::with_password(&source_db_password),
+                DatabaseKey::new().with_password(&source_db_password),
             )
         }
     }?;
@@ -113,7 +113,7 @@ fn main() -> Result<std::process::ExitCode> {
     let mut destination_db_file = File::options().write(true).open(&destination_db_path)?;
     destination_db.save(
         &mut destination_db_file,
-        DatabaseKey::with_password(&destination_db_password),
+        DatabaseKey::new().with_password(&destination_db_password),
     )?;
     println!("Databases were merged successfully.");
 
