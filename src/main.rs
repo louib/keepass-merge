@@ -81,7 +81,7 @@ fn main() -> Result<std::process::ExitCode> {
         }
     }?;
 
-    let merge_result = match destination_db.root.merge(&source_db.root) {
+    let merge_result = match destination_db.merge(&source_db) {
         Ok(r) => r,
         Err(e) => {
             eprintln!("{}", e);
