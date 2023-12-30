@@ -14,9 +14,6 @@ struct Args {
     /// Provide a keyfile
     #[arg(short = 'k', long)]
     keyfile: Option<String>,
-
-    /// Provide the entry to read
-    entry: String,
 }
 
 fn main() -> Result<std::process::ExitCode> {
