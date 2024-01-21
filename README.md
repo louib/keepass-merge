@@ -24,12 +24,28 @@ Arguments:
   <SOURCE_DB>       The path of the database file to merge from
 
 Options:
-  -n, --no-prompt         Disables the password prompt on stdout
-  -s, --same-credentials  Use the same credentials for both databases
-  -d, --dry-run           Do not save the resulting database
-  -f, --force             Force saving the database even if warnings were generated
-  -h, --help              Print help
-  -V, --version           Print version
+  -n, --no-password
+          Do not use a password to decrypt the destination database
+  -s, --same-credentials
+          Use the same credentials for both databases
+  -d, --dry-run
+          Do not save the resulting database
+      --slot <SLOT>
+          The slot number of the yubikey to decrypt the destination database
+      --serial-number <SERIAL_NUMBER>
+          The serial number of the yubikey to decrypt the destination database
+      --slot-from <SLOT_FROM>
+          The slot number of the yubikey to decrypt the source database
+      --serial-number-from <SERIAL_NUMBER_FROM>
+          The serial number of the yubikey to decrypt the source database
+      --no-password-from
+          Do not use a password to decrypt the source database
+  -f, --force
+          Force saving the database even if warnings were generated
+  -h, --help
+          Print help
+  -V, --version
+          Print version
 ```
 
 ## Installing
