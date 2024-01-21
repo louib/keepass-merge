@@ -6,7 +6,7 @@
 > **Warning**   
 >
 > This repo is a work-in-progress and is not ready for general use.
-> It relies on a [unmerged PR](https://github.com/sseemayer/keepass-rs/pull/155) in `keepass-rs`,
+> It relies on a [unmerged PR](https://github.com/sseemayer/keepass-rs/pull/201) in `keepass-rs`,
 > and will not reach version 1.0.0 before that PR is merged.
 
 CLI tool to merge KDBX (keepass) databases
