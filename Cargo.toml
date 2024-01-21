@@ -22,4 +22,4 @@ anyhow = { version = "1" }
 git = "https://github.com/sseemayer/keepass-rs"
 branch = "add_merge_feature_refactor"
 # path = "../keepass-rs"
-features = ["save_kdbx4", "merge"]
+features = ["save_kdbx4", "merge", "challenge_response"]
