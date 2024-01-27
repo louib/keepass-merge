@@ -91,10 +91,14 @@ fn main() -> Result<std::process::ExitCode> {
         ));
     }
 
+    println!("Opening the destination database.");
     let mut destination_db = Database::open(&mut destination_db_file, destination_db_key.clone())?;
 
     let source_db = match args.same_credentials {
-        true => Database::open(&mut source_db_file, destination_db_key.clone()),
+        true => {
+            println!("Opening the source database.");
+            Database::open(&mut source_db_file, destination_db_key.clone())
+        }
         false => {
             let mut source_db_key = DatabaseKey::new();
 
@@ -119,10 +123,12 @@ fn main() -> Result<std::process::ExitCode> {
                 ));
             }
 
+            println!("Opening the source database.");
             Database::open(&mut source_db_file, source_db_key)
         }
     }?;
 
+    println!("Merging the databases.");
     let merge_result = match destination_db.merge(&source_db) {
         Ok(r) => r,
         Err(e) => {
@@ -152,6 +158,7 @@ fn main() -> Result<std::process::ExitCode> {
         return Ok(std::process::ExitCode::SUCCESS);
     }
 
+    println!("Destination database was modified. Saving the database.");
     let mut destination_db_file = File::options().write(true).open(&destination_db_path)?;
     destination_db.save(&mut destination_db_file, destination_db_key)?;
     println!("Databases were merged successfully.");
